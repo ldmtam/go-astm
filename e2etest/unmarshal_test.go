@@ -70,12 +70,12 @@ func TestFullSingleASTMMessage(t *testing.T) {
 	assert.Equal(t, "lalina", message.Result.OperatorIDPerformed)
 }
 
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // TEST
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // Testing a rather more complex structure with optional and arrays on the
 // structure as well as on the Records
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 type MessagePORC struct {
 	Header       standardlis2a2.Header       `astm:"H"`
 	Manufacturer standardlis2a2.Manufacturer `astm:"M,optional"`
@@ -122,12 +122,12 @@ func TestNestedStructure(t *testing.T) {
 	assert.Equal(t, "SecondComment", message.OrderResults[0].CommentedResult[0].Comment[1].CommentSource)
 }
 
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // TEST
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // Custom Delimiters : In the header there is a delimiter-field that can change
 // the default delimiters
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 type MessageCustomDelimiterTest struct {
 	Header     standardlis2a2.Header     `astm:"H"`
 	Patient    standardlis2a2.Patient    `astm:"P"`
@@ -152,12 +152,14 @@ func TestCustomDelimiters(t *testing.T) {
 
 }
 
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // TEST
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // Custom Structures can be defined and mapped to records
-//  aside:    also testing float values
-//-----------------------------------------------------------------------------------
+//
+//	aside:    also testing float values
+//
+// -----------------------------------------------------------------------------------
 type CompleteOutOfStandardCustomRecord struct {
 	SequenceNumber string  `astm:"2"`
 	F2             string  `astm:"3"`
@@ -272,12 +274,14 @@ func TestEnumEncoding(t *testing.T) {
 	assert.Equal(t, EnumValue1, message.Record.Value)
 }
 
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // TEST
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // Access time.Time in a struct with multiple components
-//  aside:    also testing time.time values
-//-----------------------------------------------------------------------------------
+//
+//	aside:    also testing time.time values
+//
+// -----------------------------------------------------------------------------------
 type AccessTimeComment struct {
 	SequenceNumber              int       `astm:"2,sequence" db:"sequence_number"`            // 3.2.8 - ih_com_host_connection_manual_astm_1394_en_h009164_v1_8.pdf
 	DescriptionOfReagent        string    `astm:"3.1.1"  db:"description_of_reagent"`         //
@@ -363,10 +367,10 @@ func TestCommentNoneBug(t *testing.T) {
 	assert.NotNil(t, err) */
 }
 
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 // TEST a german message Win1252 Encoded
-//-----------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------
 type MessageGermanLanguageTest struct {
 	Header     standardlis2a2.Header     `astm:"H"`
 	Patient    standardlis2a2.Patient    `astm:"P"`

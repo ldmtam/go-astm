@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"reflect"
 	"strconv"
 	"strings"
@@ -123,12 +124,11 @@ const (
 func EncodeCharsetToUTF8From(charmap *charmap.Charmap, data []byte) ([]byte, error) {
 	sr := bytes.NewReader(data)
 	e := charmap.NewDecoder().Reader(sr)
-	bytes := make([]byte, len(data)*2)
-	n, err := e.Read(bytes)
+	bytes, err := ioutil.ReadAll(e)
 	if err != nil {
 		return []byte{}, err
 	}
-	return bytes[:n], nil
+	return bytes, nil
 }
 
 /* This function takes a string and a struct and matches the annotated fields to the string-input */

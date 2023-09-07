@@ -53,6 +53,7 @@ func IdentifyMessage(messageEncoded []byte, enc Encoding) (MessageType, error) {
 	expressionQuery := "^(HQ+)+L?$"
 	expressionOrder := "^(H(PC?OC?)+)+L?$"
 	expressionOrderAndResult := "^(H(PC?OC?(RC?)+)+)+L?$"
+	expressionManyOrderAndResult := "^(H(PC?(OC?(RC?)+)*)+)L?$"
 
 	if match, _ := regexp.MatchString(expressionQuery, genome); match {
 		return MessageTypeQuery, nil
@@ -63,6 +64,10 @@ func IdentifyMessage(messageEncoded []byte, enc Encoding) (MessageType, error) {
 	}
 
 	if match, _ := regexp.MatchString(expressionOrderAndResult, genome); match {
+		return MessageTypeOrdersAndResults, nil
+	}
+
+	if match, _ := regexp.MatchString(expressionManyOrderAndResult, genome); match {
 		return MessageTypeOrdersAndResults, nil
 	}
 

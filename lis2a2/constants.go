@@ -29,11 +29,13 @@ const TimezoneEuropeLondon Timezone = "Europe/London"
 
 type LineBreak int
 
-const CR LineBreak = 0x13
-const LF LineBreak = 0x10
-const CRLF LineBreak = 0x1310
+const CR LineBreak = 0x0D
+const LF LineBreak = 0x0A
+const CRLF LineBreak = 0x0D0A
 
-/* Notation defines how the output format is build
+/*
+	Notation defines how the output format is build
+
 ShortNotation will skip all delimiters to the right of the last value
 StandardNotation will always produce as many delimiters as there are values in the export-format
 */

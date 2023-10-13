@@ -576,3 +576,13 @@ func TestMultipleMessagesInOne(t *testing.T) {
 	assert.Equal(t, "12,5", message.Messages[0].OrderResults[0].CommentedResult[0].Result.DataMeasurementValue)
 	assert.Equal(t, "99,66", message.Messages[1].OrderResults[0].CommentedResult[0].Result.DataMeasurementValue)
 }
+
+func TestNullValuesShouldGiveQualifiedError(t *testing.T) {
+
+	var message standardlis2a2.DefaultMultiMessage
+	err := lis2a2.Unmarshal(nil /*giving null as input*/, &message,
+		lis2a2.EncodingUTF8, lis2a2.TimezoneEuropeBerlin)
+
+	assert.NotNil(t, err)
+	assert.Equal(t, "message has nil value - aborting", err.Error())
+}

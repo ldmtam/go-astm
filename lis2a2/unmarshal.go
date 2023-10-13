@@ -17,6 +17,10 @@ const MAX_MESSAGE_COUNT = 44
 const MAX_DEPTH = 44
 
 func Unmarshal(messageData []byte, targetStruct interface{}, enc Encoding, tz Timezone) error {
+
+	if messageData == nil {
+		return fmt.Errorf("message has nil value - aborting")
+	}
 	var (
 		messageBytes []byte
 		err          error

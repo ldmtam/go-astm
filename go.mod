@@ -1,4 +1,4 @@
-module github.com/DRK-Blutspende-BaWueHe/go-astm
+module github.com/ldmtam/go-astm
 
 go 1.17
 
